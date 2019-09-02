@@ -16,7 +16,7 @@ npm i underscore
 ```
 npm i express
 ```
-![package.json](images/image1.png)
+![package.json](images/image2.png)
 
 ## Uso tipico de npm
 - Uso tipico y mas comun es para poder intalar las dependencias, iniciar o ejecutar los test de un proyecto.
