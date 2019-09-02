@@ -1,0 +1,18 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "Aplicacioon web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "web"
+  ],
+  "author": "Sergio Antonio Ochoa Martinez <gnu.java.sergio@gmail.com> (https://twitter.com/gnujavasergio)",
+  "license": "MIT",
+  "dependencies": {
+    "hello-gdgsucre": "gist:f1d6d172f400776ac28dbcb99cd28ee8",
+    "underscore": "~1.8.1"
+  }
+}
