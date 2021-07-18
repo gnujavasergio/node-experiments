@@ -13,6 +13,6 @@
   "license": "MIT",
   "dependencies": {
     "hello-gdgsucre": "gist:f1d6d172f400776ac28dbcb99cd28ee8",
-    "underscore": "~1.8.1"
+    "underscore": "~1.12.1"
   }
 }
