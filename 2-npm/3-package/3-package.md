@@ -1,9 +1,11 @@
 # Packages
 
 # Configurar tu usuario.
+
 - Primero se tiene que crea una cuenta en [https://www.npmjs.com](https://www.npmjs.com).
 - Segundo configurar tu cuenta en la consola.
-```
+
+```bash
 npm adduser
 Username: gnujavasergio
 Password: 
@@ -12,7 +14,9 @@ Logged in as gnujavasergio on https://registry.npmjs.org/.
 ```
 
 ## Preparar tu proyecto para publicarlo
+
 - Pasos
+
 ```bash
 # Crear la carpeta del proyecto
 mkdir sdk4js
@@ -79,7 +83,43 @@ git add -A
 git commit -m "Configuración del proyecto"
 git push origin master
 ```
+
+## Crear nuestro paquete en global
+
+- Crear el proyecto en `src/`
+- Crear el archivo **bin/global.js** si queremos que se necesite instalar como un paquete global
+
+```javascript
+#!/usr/bin/env node
+let random = require('../src/index.js');
+
+random.randomMsg();
+```
+
+- Modificar package.js para habilitar el paquete glogal y añadirle con comando como se lo llamara por consola
+
+```json
+{
+  "license": "MIT",
+  "bin": {
+    "random-msg": "./bin/global.js"
+  },
+  "preferGlobal": true
+}
+```
+
 ## Publicar
+
+- Antes de publicar nuestro paquete tenemos que probarlo si esta bien y esto lo hacemos localmente.
+
+```bash
+random-messages $
+# Ayuda para saber si nuestro paquete no tenga vulneravilidades
+sudo npm link 
+
+# Actualizar nuestro paquete local 
+npm install -g /home/sochoa/github/node-experiments/2-npm/projects/random-messages
+```
 
 ```bash
 # Publicar el paquete
@@ -102,14 +142,18 @@ w3m npm.im/sdk4js
 git tag 1.0.0
 git push --tags
 ```
+
 ![tag](images/image1.png)
 
 ## Publicar una actualización
-- Para realizar una actualizacion tiene haber cambios y estos cambios podrian ser 
+
+- Para realizar una actualizacion tiene haber cambios y estos cambios podrian ser
     - major
     - minor
     - patch
-- El cambio de las versiones en el archivo package.json se podria hacer manualmente pero tambien se le puede dar la responsabilidad a npm para que lo haga.
+- El cambio de las versiones en el archivo package.json se podria hacer manualmente pero tambien se le puede dar la
+  responsabilidad a npm para que lo haga.
+
 ```bash
 # Primero realizamos cambios
 git add -A
@@ -137,8 +181,10 @@ npm publish
 ```
 
 ## Lanzamiento de una versión beta
-- Se realiza los cambios en el codigo 
+
+- Se realiza los cambios en el codigo
 - Modificamos la version manualmente `1.1.0-beta.0`
+
 ```json
 {
   "name": "sdk4js",
@@ -163,7 +209,9 @@ npm publish
   "homepage": "https://github.com/gnujavasergio/sdk4js#readme"
 }
 ```
+
 - Utilizamos git para continuar
+
 ```bash
 # Subimos al repositorio local
 git add -A
@@ -175,17 +223,23 @@ git push origin master
 # Subimos el tag
 git push --tags
 ```
+
 - Publicamos la version beta
+
 ```
 npm publish --tag beta
 ```
+
 - Los tags en npm son muy importantes ya que con ello podemos decidir que tag instalar a un proyecto
+
 ```bash
 # Instalar la version beta
 npm i sdk4js@beta
 npm i sdk4js@1.0.0
 ```
-- Podemos revisar la informacino del paquete para visualizar los tags
+
+- Podemos revisar la información del paquete para visualizar los tags
+
 ```bash
 npm info sdk4js
 
@@ -208,4 +262,12 @@ dist-tags:
 beta: 1.1.0-beta.0  latest: 1.0.1       
 
 published 2 days ago by gnujavasergio <gnu.java.sergio@gmail.com>
+```
+
+## Version
+
+- Para actualizar nuestra versión automaticamente utilizar
+
+```bash
+npm version patch
 ```

@@ -1,25 +1,34 @@
 # Introducción
 
 ## Ques es un paquete?
+
 - Es muy importante diferenciar entre un modulo y un paquete.
     - Un modulo es un unico archivo de javascript que tiene alguna funcionalidad
-    - Un paquete es un directorio con uno o mas modulos dentro de el y un archivo package.json el cual tiene metadatos sobre el paquete.
+    - Un paquete es un directorio con uno o mas modulos dentro de el y un archivo package.json el cual tiene metadatos
+      sobre el paquete.
 
 ### Tipos de paquetes
+
 - Simples: Teniendo un solo archivo como underscore
-```
+
+```bash
 npm i underscore
 ```
+
 ![package.json](images/image1.png)
 
 - Complejos: Teniendo varios archivos y subdirectores como express
-```
+
+```bash
 npm i express
 ```
+
 ![package.json](images/image2.png)
 
 ## Uso tipico de npm
+
 - Uso tipico y mas comun es para poder intalar las dependencias, iniciar o ejecutar los test de un proyecto.
+
 ```bash
 git clone https://github.com/joeeames/trip-to-mars-typical triptomars
 cd triptomars
@@ -30,12 +39,14 @@ npm test
 ```
 
 - Los scripts `npm start` o `npm test` estan declarados en el metadato `scripts` del archivo package.json del proyecto.
-![package.json](images/image3.png)
+  ![package.json](images/image3.png)
 
 ## npm help
+
 - Para poder saber mas de `npm` es comun utilizar los comandos para mostrar la documentación de la ayuda.
+
 ```bash
-# Mostrtar una lista de los comandos tipicos de npm pero con una información menor
+# Mostrar una lista de los comandos tipicos de npm pero con una información menor
 npm -h
 
 # Mostrar la ayuda espefifica sobre el comando install
@@ -51,6 +62,7 @@ npm help-search remove
 ```
 
 - Configurar para que el manual detallado aparezca en el navegador se realiza configurando el viewer.
+
 ```bash
 # Mostramos la configuracion
 npm config ls -l
@@ -66,7 +78,12 @@ npm config delete viewer
 ```
 
 ## Shortcuts
-- Un documento a tomar en cuenta y que pueder visitar varias veces es la pagina de configuraciones [https://docs.npmjs.com/misc/config](https://docs.npmjs.com/misc/config) en donde se encontrar los shortcuts para los comandos mas largos de npm es una referencia que podra visitar varias veces para poder memorizar y aprenderselos.
+
+- Un documento a tomar en cuenta y que pueder visitar varias veces es la pagina de
+  configuraciones [https://docs.npmjs.com/misc/config](https://docs.npmjs.com/misc/config) en donde se encontrar los
+  shortcuts para los comandos mas largos de npm es una referencia que podra visitar varias veces para poder memorizar y
+  aprenderselos.
+
 ```bash
     -v: --version
     -h, -?, --help, -H: --usage
@@ -95,15 +112,20 @@ npm config delete viewer
 ```
 
 ## Crear un package.json
+
 - Hay dos tipos de proyectos que se pueden crear
     - Proyectos para usuarios, sitios web, aplicaciones web
     - Paquetes para terceros para que otros desarrolladores lo comsuman.
 
 ### Razon para crear package.json
+
 - Rastrear dependencias que esta utilizando
 - Crear algunos scripts y no utilizar gulp o grunt
 
-- Al crear un proyecto con el comando `npm init` hay que seguir una serie de preguntas. Esas preguntas cambiaran con las versiones de npm aunque no seran tan grandes los cambios, las preguntas pueden tener valores por defecto y solo al precionar enter tomara ese valor pero si se lo quiere cambiar se escribe el cambio que se quiere realizar y al finalizar las preguntas siempre te pedira que confirmes el package.json generado.
+- Al crear un proyecto con el comando `npm init` hay que seguir una serie de preguntas. Esas preguntas cambiaran con las
+  versiones de npm aunque no seran tan grandes los cambios, las preguntas pueden tener valores por defecto y solo al
+  precionar enter tomara ese valor pero si se lo quiere cambiar se escribe el cambio que se quiere realizar y al
+  finalizar las preguntas siempre te pedira que confirmes el package.json generado.
 
 ```bash
 mkdir 
@@ -148,12 +170,25 @@ Is this OK? (yes) yes
 ```
 
 - Cear el archivo con todos los valores por defecto
+
 ```bash
 npm init -y
 ```
 
+- Configurar los valores por defecto npm
+
+```bash
+npm set init.author.email "gnu.java.sergio@gmail.com"
+npm set init.author.name "Sergio Antonio Ochoa Martinez"
+npm set init.license "MIT"
+npm init -y
+```
+
 ## Configuraciones por defecto
-- Al crear un nuevo proyecto para no estar escribiendo siempre todas las respuestas a las preguntas realizadas por `npm init` se puede terner respuestas por defecto para todos nuestros proyectos y eso se realiza con el comando `npm cofig set [key]`.
+
+- Al crear un nuevo proyecto para no estar escribiendo siempre todas las respuestas a las preguntas realizadas
+  por `npm init` se puede terner respuestas por defecto para todos nuestros proyectos y eso se realiza con el
+  comando `npm cofig set [key]`.
 
 ```bash
 # Para listar la configuracion
@@ -176,16 +211,19 @@ npm get init-license
 npm config delete init-license
 ```
 
-- Todas las modificaciones que se realiza se guardan en el archivo /home/user/.npmrc 
+- Todas las modificaciones que se realiza se guardan en el archivo /home/user/.npmrc
 
 ## Instalar paquetes
- - Para instalar paquetes al proyecto y guardarlos en el **package.json** comunmente se tiene dos opciones:
+
+- Para instalar paquetes al proyecto y guardarlos en el **package.json** comunmente se tiene dos opciones:
     - Dependencias de produccion
     - Dependencias de desarrollo
 
 ### Dependencias de producción
+
 - Paquetes requeridos para la aplicacion cuando esta en producción
 - Metadata **dependencies**
+
 ```bash
 # Comando Completo
 npm install <package-name> [--save-prod]
@@ -194,8 +232,10 @@ npm i <package-name> -S
 ```
 
 ### Dependencias de Desarrollo
-- Paquetes requeridos para la aplicacion cuando esta en desarrollo y testing.
+
+- Paquetes requeridos para la aplicación cuando está en desarrollo y testing.
 - Metadata **devDependencies**
+
 ```bash
 # Comando Completo
 npm install <package-name> --save-dev
@@ -203,10 +243,34 @@ npm install <package-name> --save-dev
 npm i <package-name> -D
 ```
 
+### Dependencias Opcionales
+
+- Metadata **optionalDependencies**
+
+```bash
+npm install <package-name> --save-optional
+npm i <package-name> -O
+```
+
+### Simular la instalacion de dependencias
+
+```bash
+npm install <package-name> --dry-run
+```
+
+### Dependencias forzadas
+
+```bash
+npm install <package-name> --force --save-dev
+npm install <package-name> -f -D
+```
+
 ## Listar los paquetes instalados
+
 - Podemos mostrar una lista de las dependencias de nuestro proyectro o dependencias globales con los siguientes comandos
 
 ### Comandos para paquetes de proyecto
+
 ```bash
 # Listar los paquetes de un proyecto entrando al directorio node_modules
 cd node_modules
@@ -226,6 +290,7 @@ npm list --depth 0 --dev true
 ```
 
 ### Comandos para paquetes globales
+
 ```bash
 # Muestra una lista detallada de todos los paquetes instalados globalmente
 npm list --global true
@@ -241,7 +306,9 @@ npm list --global --depth 0 --long true --json true
 ```
 
 ## Instalar paquetes globalmente
-- Un paquete se instala globlamente para poder utilizarlo en linea de comando y no estar instalando en cada proyecto 
+
+- Un paquete se instala globlamente para poder utilizarlo en linea de comando y no estar instalando en cada proyecto
+
 ```bash
 # Para instalar en forma global se utiliza el flag -g
 npm install -g @angular/cli
@@ -251,6 +318,7 @@ ng new blog
 ```
 
 ## Desintalar y Eliminar un paquete
+
 ```bash
 # Para desintalar el paquete
 npm uninstall express
@@ -262,13 +330,22 @@ npm uninstall express --save
 # Para desintalar paquete y eliminar el paquete del archivo package.json
 # Comando corto
 npm un express -S
+
+## Para desintalar paquete sin eliminar el paquete del archivo package.json
+npm uninstall webpack --no-save
 ```
+
 ## Instalar versiones especificas
-- Se instala una version especifica cuando tenemos un proyecto que si no se utiliza la version adecuada puede que el proyecto se rompa o cause errores.
+
+- Se instala una version especifica cuando tenemos un proyecto que si no se utiliza la version adecuada puede que el
+  proyecto se rompa o cause errores.
 - Version de un paquete 1.8.25 (Major, minor, Patch)
-  - **Major**: Aumente cuando los cambios realizados ya no tienen soporte para las versiones posteriores.
-  - **Minor**: Aumenta cuando se añade una nueva funcionalidad
-  - **Patch**: Aumenta cuando se soluciona un bug, un error de alguna funcionalidad
+    - **Major**: Aumente cuando los cambios realizados ya no tienen soporte para las versiones posteriores.
+    - **Minor**: Aumenta cuando se añade una nueva funcionalidad
+    - **Patch**: Aumenta cuando se soluciona un bug, un error de alguna funcionalidad
+
+[versiones](images/image4.png)
+
 ```bash
 # Instalara la ultima versión del paquete
 npm i underscore
@@ -293,31 +370,41 @@ npm i underscore@">=1.1.0 <1.8.x" -S -E
 ```
 
 ## Instalar dependencias existentes
-- Cuando un usuario tiene que ejecutar el proyecto solo tiene que instalar las dependencias del proyecto utilizando el comando `npm i`.
+
+- Cuando un usuario tiene que ejecutar el proyecto solo tiene que instalar las dependencias del proyecto utilizando el
+  comando `npm i`.
+
 ```json
-// Se instalara la versión exacta la 1.7.0
-{  
+{
+  "_comment": "Se instalara la versión exacta la 1.7.0",
   "dependencies": {
     "underscore": "1.7.0"
   }
 }
+```
 
-// Se instalara la ultima versión minor(1.7.x o 1.7)
-{  
+```json
+{
+  "_comment": "Se instalara la ultima versión minor(1.7.x o 1.7)",
   "dependencies": {
     "underscore": "~1.7.1"
   }
 }
+```
 
-// Se instalara la ultima versión major (1.x o 1)
-{  
+```json
+{
+  "_comment": "Se instalara la ultima versión major (1.x o 1)",
   "dependencies": {
     "underscore": "^1.7.1"
   }
 }
 ```
+
 ## Actualizar paquetes
+
 - Para actualizar los paquetes se utiliza `npm update` o `npm u`
+
 ```bash
 # Actualizara todas la dependencias en su version minor tanto dependencias de producción y desarrollo
 npm update 
@@ -333,4 +420,65 @@ npm update underscore
 
 # Actualizar paquetes globales
 npm update -g @vue/cli@3.8.4
+```
+
+- Un comando para saber si tus dependencias necesitar ser actualizadas o si ya es 
+  necesario actualizarlo
+
+```bash
+# Output especifico
+npm outdate
+
+vPackage      Current  Wanted  Latest  Location                  Depended by
+json-server   0.15.0  0.15.1  0.16.3  node_modules/json-server  jsnpm
+
+# Output detallado
+npm outdate --dd
+```
+
+- Actualizar paquetes
+
+```bash
+# Actualiza todos los paquetes del proyecto 
+npm update
+
+# Actualiza un paquete espesifico 
+npm install json-server@latest
+```
+
+## Solucionar problemas
+- Un problema es que no esten escritas correctamente los comandos
+```bash
+# Para mostrar el error que salga a detalle
+npm run build --dd
+```
+
+- Otro problema es que los paquetes no esten correctamente instalados o que esten en cache.
+```bash
+npm cache clean --force
+npm cache verify
+```
+
+- Para eliminar la carpeta node_modules con npm
+```bash
+npm install -g rimraf
+
+# Borrar la carpeta node_modules
+rimraf node_modules
+```
+
+## Seguridad
+- https://snyk.io/ : Proyecto para tener nuestros paquetes actualizados
+- Como desarrolladores somo responsables de que nuestro proyecto este actualizado y no se
+instale ningun paquete malisioso.
+  
+```bash
+npm audit
+npm audit --json
+
+# Actualizar todos los paquetes y sus dependencias y soluciona todas las vulneravilidades que tenga el proyecto
+npm audit fix
+
+## Forzar la actual
+npm audit fix --force
 ```
